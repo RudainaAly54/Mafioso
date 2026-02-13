@@ -59,23 +59,7 @@ import  citizensWin from '../assets/citizensWin.mp3';
     }
   }, []);
 
-  useEffect(() => {
-  if (!result || hasPlayedSound.current) return;
-
-  let audio;
-
-  if (result === 'mafiosos') {
-    audio = new Audio(mafiosoWins);
-  } else if (result === 'citizens') {
-    audio = new Audio(citizensWin);
-  } else {
-    return; 
-  }
-
-  audio.volume = 0.8;
-  audio.play().catch(() => {});
-  hasPlayedSound.current = true;
-}, [result]);
+  
 
   // ── gather mafioso names for the reveal ──────────────────────────────────
   // `mafioso` from context is the original assigned mafioso role(s).
