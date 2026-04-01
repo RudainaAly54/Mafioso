@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { useGame } from '../context/GameContext';
 import { Trophy, Skull, ArrowRight } from 'lucide-react';
-import mafiosoWins from '../assets/mafiosoWins.mp3';
-import  citizensWin from '../assets/citizensWin.mp3';
+import { ImEvil } from "react-icons/im";
+import { TbMoodSad } from "react-icons/tb";
 
 
 /*
@@ -134,55 +134,16 @@ import  citizensWin from '../assets/citizensWin.mp3';
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
-              className={`mt-3 text-lg font-['Cairo'] font-bold ${
+              className={`mt-3 text-lg font-['Cairo'] font-bold flex gap-5 items-center justify-center ${
                 ejectedPlayer?.role?.isMafioso ? 'text-red-400' : 'text-green-400'
               }`}
             >
-              {ejectedPlayer?.role?.isMafioso ? '😈 كان مافيوسو!' : ' 😔مش المافيوسو '}
+              {ejectedPlayer?.role?.isMafioso ? <ImEvil size={32}/>: <TbMoodSad size={32}/>}
+              {ejectedPlayer?.role?.isMafioso ? ' كان مافيوسو!'  :  ' مش المافيوسو '}
             </motion.p>
           </div>
         </motion.div>
 
-        {/* New clue preview */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="relative z-10 max-w-md w-full mb-8"
-        >
-          <div className="bg-[var(--mafia-black)] rounded-2xl p-6 border-2 border-[var(--mafia-gold)] shadow-[0_0_24px_rgba(212,175,55,0.25)] text-center">
-            <p className="text-[var(--mafia-gold)] text-sm font-['Cairo'] mb-2 opacity-70">
-              الدليل الجديد
-            </p>
-            <p className="text-[var(--mafia-off-white)] text-lg font-['Cairo']" style={{ direction: 'rtl' }}>
-              {newClue || 'مفيش دلائل تاني خلاص خلصوا '}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Remaining players */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="relative z-10 max-w-md w-full mb-8"
-        >
-          <div className="bg-[var(--mafia-dark-red)]/60 rounded-xl p-4 border border-[var(--mafia-gold)]/20 text-center">
-            <p className="text-[var(--mafia-off-white)] text-sm font-['Cairo'] mb-2 opacity-60">
-             اللعيبة الي فاضلة({players.length})
-            </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {players.map((p) => (
-                <span
-                  key={p.id}
-                  className="bg-[var(--mafia-burgundy)] text-[var(--mafia-off-white)] px-3 py-1 rounded-full text-sm font-['Cairo'] border border-[var(--mafia-gold)]/30"
-                >
-                  {p.name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
 
         {/* Back to discussion button */}
         <motion.button
@@ -276,7 +237,7 @@ import  citizensWin from '../assets/citizensWin.mp3';
             {citizensWon ? (
               <Trophy size={100} className="mx-auto text-green-400" />
             ) : (
-              <div className="text-9xl">😈</div>
+              <div className="text-9xl"><ImEvil  size={28}/></div>
             )}
           </motion.div>
 
@@ -294,7 +255,7 @@ import  citizensWin from '../assets/citizensWin.mp3';
                 : '0 0 30px rgba(220,20,60,0.6)',
             }}
           >
-            {citizensWon ? 'كسبتوا يا عادين 😔' : 'المافيوسو كسب!'}
+            {citizensWon ? 'كسبتوا يا عادين ' : 'المافيوسو كسب!'}
           </motion.h1>
 
           {/* Subtitle */}
@@ -326,9 +287,9 @@ import  citizensWin from '../assets/citizensWin.mp3';
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.4 + i * 0.2 }}
-                  className="text-3xl font-bold text-red-400 font-['Cairo']"
+                  className="text-3xl font-bold text-red-400 font-['Cairo'] flex gap-5 justify-center itmes-center"
                 >
-                  😈 {mp.name}
+                  <ImEvil/> {mp.name}
                 </motion.div>
               ))}
               {mafiosoPlayers.length === 0 && (

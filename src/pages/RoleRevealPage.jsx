@@ -2,7 +2,9 @@ import {useState} from 'react'
 import {motion, AnimatePresence} from 'motion/react'
 import { useGame } from '../context/GameContext'
 import {Eye, EyeOff, TriangleAlert } from 'lucide-react'
-import { p } from 'framer-motion/client'
+
+import { ImEvil } from 'react-icons/im'
+import { FaRegEye } from "react-icons/fa";
 
 
 const RoleRevealPage = ({onComplete}) => {
@@ -64,7 +66,7 @@ const RoleRevealPage = ({onComplete}) => {
                             onClick={handleReveal}
                              className="bg-[var(--mafia-gold)] text-[var(--mafia-black)] px-12 py-4 rounded-2xl text-2xl font-bold shadow-[0_8px_24px_rgba(212,175,55,0.5)] hover:bg-[var(--mafia-gold-dark)] transition-colors font-['Cairo']"
                             >
-                                                👁️
+                                                <FaRegEye />
                             </motion.button>
 
                             <p className="text-sm text-[var(--mafia-off-white)]/60 mt-8 font-['Cairo']">
@@ -99,9 +101,9 @@ const RoleRevealPage = ({onComplete}) => {
                                     <motion.div
                                     animate = {{rotate: [0, 5, -5, 0]}}
                                     transition={{duration: 0.5, delay: 0.5}}
-                                    className='text-8xl mb-6'
+                                    className='text-8xl mb-6 flex justify-center text-red-400'
                                     >
-                                        😈
+                           <ImEvil/>
                                     </motion.div>
                                     <motion.h1
                                     initial={{opacity: 0, y: 20}}
