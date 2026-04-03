@@ -59,7 +59,7 @@ return(
                         transition: {staggerChildren: 0.3},
                     },
                 }}
-                className="space-y-4 text-lg md:text-xl text-[var(--mafia-off-white)] font-['Cairo']"
+                className="space-y-4 text-lg md:text-xl text-[var(--mafia-off-white)] font-['Cairo'] "
                 style={{direction: 'rtl'}}
                 >
                 <motion.p 
@@ -90,16 +90,22 @@ return(
                 >
                  وفي واحد فيكم مافيوسو (هو الي ارتكب الجريمة)
                 </motion.p>
-                
-                <motion.p 
+ 
+       <motion.p 
                 variants={{
                     hidden: {opacity:0, x: -20},
                     visible: {opacity: 1, x: 0}
 
                 }}
                 >
-                          كل الي هتعمله انك تدافع عن نفسك  وتتهم غيرك عشان تكسب
+                       كل الي هتعمله انك   تدافع عن نفسك  وتتهم غيرك عشان تكسب
+                        (او وقع غيرك لو انت المافيوسو)
+                        <p className = 'mt-4'>
+                  حاول تكتشفوا المافيوسو قبل ما يضحك عليكم كلّكم
+                        </p>
                 </motion.p>
+               
+          
                 </motion.div>
 
                 <motion.div
