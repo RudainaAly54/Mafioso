@@ -16,7 +16,7 @@ const GameProvider = ({ children }) => {
   const [roundTimeMinutes, setRoundTimeMinutes] = useState(5);
 
 
-  // ── Players ─────────────────────────────────────────────────────────────
+  //  Players 
   const addPlayer = (name) => {
     if (!name.trim()) return;
     if (players.length >= MAX_PLAYERS) return;
@@ -30,7 +30,7 @@ const GameProvider = ({ children }) => {
     setPlayers((prev) => prev.filter((p) => p.id !== id));
   };
 
-  // ── Assign roles ────────────────────────────────────────────────────────
+  //  Assign roles 
   const assignRoles = (story, mafiosoCount = 1) => {
     const playerCount = Math.min(players.length, story.roles.length);
 
@@ -62,7 +62,7 @@ const GameProvider = ({ children }) => {
         votes: 0,
       }));
 
-      // ── snapshot for ResultsPage mafioso reveal ──
+      //  snapshot for ResultsPage mafioso reveal 
       // ResultsPage needs to show ALL original mafioso names even after
       // they have been ejected (removed from players[]).
       window.__allPlayers = updated;
@@ -75,7 +75,7 @@ const GameProvider = ({ children }) => {
     setMafioso(mafiosoPlayers.length === 1 ? mafiosoPlayers[0] : mafiosoPlayers);
   };
 
-  // ── Start game ──────────────────────────────────────────────────────────
+  //  Start game 
   const startGame = (mafiosoCount = 1, roundTime = 5) => {
     if (players.length < MIN_PLAYERS) return;
 
@@ -89,7 +89,7 @@ const GameProvider = ({ children }) => {
     setGameStarted(true);
   };
 
-  // ── Clues ───────────────────────────────────────────────────────────────
+  //  Clues 
   const nextClue = () => {
     if (!currentStory) return null;
     if (currentClueIndex < currentStory.clues.length - 1) {
@@ -103,7 +103,7 @@ const GameProvider = ({ children }) => {
     return currentStory ? currentStory.clues[currentClueIndex] : '';
   };
 
-  // ── Voting ──────────────────────────────────────────────────────────────
+  //  Voting 
   const voteForPlayer = (playerId) => {
     setPlayers((prev) =>
       prev.map((p) => (p.id === playerId ? { ...p, votes: p.votes + 1 } : p))
@@ -114,7 +114,7 @@ const GameProvider = ({ children }) => {
     setPlayers((prev) => prev.map((p) => ({ ...p, votes: 0 })));
   };
 
-  // ── Eject most-voted player ─────────────────────────────────────────────
+  //  Eject most-voted player 
   const ejectPlayer = () => {
     const sortedPlayers = [...players].sort((a, b) => b.votes - a.votes);
     const mostVotedPlayer = sortedPlayers[0];
@@ -130,7 +130,7 @@ const GameProvider = ({ children }) => {
     return null;
   };
 
-  // ── Win condition ────────────────────────────
+  //  Win condition 
   const checkWinCondition = () => {
     const remainingMafiosos = players.filter((p) => p.role?.isMafioso);
 
@@ -139,7 +139,7 @@ const GameProvider = ({ children }) => {
     return null;
   };
 
-  // ── Reset ───────────────────────────────────────────────────────────────
+  //  Reset 
   const resetGame = () => {
     setPlayers([]);
     setGameStarted(false);
